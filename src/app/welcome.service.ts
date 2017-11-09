@@ -1,0 +1,71 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/throw';
+
+import { IPerson } from './person';
+
+@Injectable()
+export class WelcomeService {
+  // private _url= 'http://jsonplaceholder.typicode.com/posts';
+  private _url = './person.json';
+  private _person;
+
+  constructor(private _http: HttpClient) { }
+
+  // getPerson(id: string): IPerson {
+  //   if (id == "1") {
+  //     this._person = {
+  //       "id": "1",
+  //       "name": "John",
+  //       "phone": "111",
+  //       "address": "aaaa",
+  //       "video": "http://static.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov"
+  //     }
+  //   }
+  //   if (id == "2") {
+  //     this._person = {
+  //       "id": "2",
+  //       "name": "Yael",
+  //       "phone": "222",
+  //       "address": "bbbb",
+  //       "video": "http://static.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov"
+  //     }
+  //     }
+  //     if (id == "3") {
+  //       this._person = {
+  //         "id": "3",
+  //         "name": "Ori",
+  //         "phone": "333",
+  //         "address": "cccc",
+  //         "video": "http://static.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov"
+  //       }
+  //       }
+  //       if (id == "4") {
+  //         this._person = {
+  //           "id": "4",
+  //           "name": "Dani",
+  //           "phone": "444",
+  //           "address": "dddd",
+  //           "video": "http://static.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov"
+  //         }
+  //       }
+  //       return this._person;
+  //     }
+  //   }
+  getPerson(id: string): Observable<IPerson> {
+    console.log("im here");
+    // const url = `${this._url}/$(id)}`;
+    // return this._http.get<IPerson>(url)
+    return this._http.get<IPerson>(this._url)
+      .do(data => this._person = data)
+      .catch(this.handleError);
+  }
+  private handleError(err: HttpErrorResponse) {
+    console.log(err.message);
+    return Observable.throw(err.message);
+  }
+}

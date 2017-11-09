@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <h1>
+    Welcome {{person?.name}}!
+  </h1>
+</div>
+<h2>Your Details: </h2>
+<ul>
+    <li>
+    Phone : {{person?.phone}}
+  </li>
+  <li>
+      ADDRESS : {{person?.address}}
+  </li>
+</ul>
+<h2>Check out your favorite video</h2>
+<button class="btn btn-primary" (click)="onButtonClick()">Play</button>
+<div *ngIf="playVideo">
+    <video width="50%" height="50%" controls autoplay="true" onclick="this.paused? this.play() : this.pause()">
+        <source [src]="person?.video" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+  </div>

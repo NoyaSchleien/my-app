@@ -1,0 +1,19 @@
+h1 {
+    color: darkblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+  }
+
+  h2 {
+    margin: 80px;
+    color: darkblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+  }
+  li {
+    margin: 80px;
+    padding: 2px;
+  color: rgb(39, 75, 236);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+}
