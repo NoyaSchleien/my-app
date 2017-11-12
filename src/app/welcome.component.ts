@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { IPerson } from './person';
 import { WelcomeService } from './welcome.service';
 
@@ -9,16 +9,21 @@ import { WelcomeService } from './welcome.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  @Input() id: string;
+  @Input() id: number;
+  // @ViewChild ("myVideo") myVideo: HTMLVideoElement;
   person: IPerson;
   errorMessage: string;
-
   playVideo: boolean;
 
   constructor(private _welcomeService: WelcomeService) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.playVideo = false;
+    //I need to fix this make the button disabled when needed
+    // if (this.person!=undefined){
+    //   this.button=true;
+    // }
+
     this._welcomeService.getPerson(this.id)
       .subscribe(person => {
         this.person = person;
@@ -26,12 +31,20 @@ export class WelcomeComponent implements OnInit {
       },
       error => this.errorMessage = <any>error
       );
-    // this.person=this._welcomeService.getPerson(this.id);
+    // this.person = this._welcomeService.getPerson(this.id);
   }
 
   onButtonClick() {
+    // this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
+    //     console.log(this.myVideo);
+    //     if(this.myVideo.paused){
+    //     this.myVideo.play();
+    //   } else this.myVideo.pause();
+    // }
+    //   if (this.playVideo==false){
+    //   this.playVideo = true;
+    //   }else this.playVideo=false;
+    // }
     this.playVideo = true;
-
   }
-
-}
+  }

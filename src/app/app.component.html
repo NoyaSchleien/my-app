@@ -4,9 +4,9 @@
   </h1>
   <form>
     ID : <br>
-    <input type="text" #box (keyup)="onKey(box.value)">
+    <input type="number" #box (keyup)="onKey(box.value)">
   </form>
 </div>
-<div *ngIf="id">
+<div *ngIf="id && idValid">
   <app-welcome [id]='id'></app-welcome>
 </div> 
