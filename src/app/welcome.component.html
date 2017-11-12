@@ -14,9 +14,9 @@
 </ul>
 <h2>Check out your favorite video</h2>
 <div style="text-align:center">  
-<button class="button" style="vertical-align:middle" (click)="onButtonClick(); myVideo.paused? myVideo.play():myVideo.pause() "><span>Play</span></button>
+<button class="button" style="vertical-align:middle" (click)="onButtonClick()"><span>{{playVideo?"Pause":"Play"}}</span></button>
 </div>
-<div *ngIf="playVideo" style="text-align:center">
+<div *ngIf = "playVideo" style="text-align:center">
     <video #myVideo width="50%" height="50%" controls autoplay="true" onclick="this.paused? this.play():this.pause()">
         <source [src]="person?.video" type="video/mp4">
           Your browser does not support the video tag.

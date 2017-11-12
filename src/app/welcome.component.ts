@@ -10,7 +10,7 @@ import { WelcomeService } from './welcome.service';
 })
 export class WelcomeComponent implements OnInit {
   @Input() id: number;
-  // @ViewChild ("myVideo") myVideo: HTMLVideoElement;
+ @ViewChild ("myVideo") myVideo: HTMLVideoElement;
   person: IPerson;
   errorMessage: string;
   playVideo: boolean;
@@ -23,20 +23,19 @@ export class WelcomeComponent implements OnInit {
     // if (this.person!=undefined){
     //   this.button=true;
     // }
-
     this._welcomeService.getPerson(this.id)
-      .subscribe(person => {
-        this.person = person;
-        console.log(this.person);
-      },
-      error => this.errorMessage = <any>error
-      );
-    // this.person = this._welcomeService.getPerson(this.id);
-  }
+    .subscribe(person => {
+      this.person = person;
+      console.log(this.person);
+    },
+    error => this.errorMessage = <any>error
+  );
+  // this.person = this._welcomeService.getPerson(this.id);
+}
 
-  onButtonClick() {
-    // this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
-    //     console.log(this.myVideo);
+onButtonClick() {
+  this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
+  console.log("myVideo = "+this.myVideo);
     //     if(this.myVideo.paused){
     //     this.myVideo.play();
     //   } else this.myVideo.pause();
