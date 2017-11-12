@@ -34,12 +34,12 @@ export class WelcomeComponent implements OnInit {
 }
 
 onButtonClick() {
-  this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
-  console.log("myVideo = "+this.myVideo);
-    //     if(this.myVideo.paused){
-    //     this.myVideo.play();
-    //   } else this.myVideo.pause();
-    // }
+  // this.myV ideo=<HTMLVideoElement>document.getElementById("myVideo");
+  console.log("myVideo = " + this.myVideo);
+        if(this.myVideo.paused){
+        this.myVideo.play();
+      } else this.myVideo.pause();
+    
     //   if (this.playVideo==false){
     //   this.playVideo = true;
     //   }else this.playVideo=false;
