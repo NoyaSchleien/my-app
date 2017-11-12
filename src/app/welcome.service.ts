@@ -11,7 +11,7 @@ import { IPerson } from './person';
 @Injectable()
 export class WelcomeService {
   // private _url= 'http://jsonplaceholder.typicode.com/posts';
-  private _url = './api/person.json';
+  private _url = 'assets/person.json';
   private _person;
 
   constructor(private _http: HttpClient) { }
