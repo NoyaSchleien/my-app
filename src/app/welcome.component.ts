@@ -11,11 +11,14 @@ import { WelcomeService } from './welcome.service';
 export class WelcomeComponent implements OnInit {
   @Input() id: number;
   @ViewChild("myVideo") myVideo: HTMLVideoElement;
+  @ViewChild("myCanvas") myCanvas: HTMLCanvasElement;
   person: IPerson;
   errorMessage: string;
   playVideo: boolean;
   buttonText: string;
-
+  context: CanvasRenderingContext2D;
+  w: number;
+  h: number;
   constructor(private _welcomeService: WelcomeService) { }
 
   ngOnInit(): void {
@@ -39,8 +42,19 @@ export class WelcomeComponent implements OnInit {
     // this.myVideo['nativeElement'].onplay = (ev: Event) => {
     //   console.log(ev);
     //     }
-  }
+    this.myVideo['nativeElement'].onloadmetadad = (ev: Event) => {
+      let ratio = this.myVideo['nativeElement'].videoWidth / this.myVideo['nativeElement'].videoHeight;
+      this.w = this.myVideo['nativeElement'].videoWidth - 100;
+      this.h = this.w / ratio;
+      this.myCanvas['nativeElement'].width = this.w;
+      this.myCanvas['nativeElement'].height = this.h;
+      this.context['nativeElement']=this.myCanvas['nativeElement'].CanvasRenderingContext2D;
+  
+    }
+    console.log("myVideo = " + this.myVideo);
+    console.log("myCanvas = " + this.myCanvas);
 
+  }
   onButtonClick() {
     console.log("myVideo = " + this.myVideo);
     if (this.myVideo['nativeElement'].paused) {
@@ -52,6 +66,10 @@ export class WelcomeComponent implements OnInit {
       this.playVideo = false;
       this.buttonText = "Play";
     }
-      }
-      
+  }
+  snap() {
+    console.log(this.myCanvas);
+    this.context['nativeElement'].fillRect(0, 0, this.w, this.h);
+    this.context['nativeElement'].drawImage(this.myVideo['nativeElement'], 0, 0, this.w, this.h)
+  }
 }

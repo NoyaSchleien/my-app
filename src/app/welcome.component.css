@@ -56,3 +56,6 @@ h1 {
   opacity: 1;
   right: 0;
 }
+.contain{
+  object-fit: contain;
+}
