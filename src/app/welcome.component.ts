@@ -10,40 +10,47 @@ import { WelcomeService } from './welcome.service';
 })
 export class WelcomeComponent implements OnInit {
   @Input() id: number;
- @ViewChild ("myVideo") myVideo: HTMLVideoElement;
+  @ViewChild("myVideo") myVideo: HTMLVideoElement;
   person: IPerson;
   errorMessage: string;
   playVideo: boolean;
+  buttonText: string;
 
   constructor(private _welcomeService: WelcomeService) { }
 
   ngOnInit(): void {
     this.playVideo = false;
+    this.buttonText="Play";
     //I need to fix this make the button disabled when needed
     // if (this.person!=undefined){
     //   this.button=true;
     // }
     this._welcomeService.getPerson(this.id)
-    .subscribe(person => {
-      this.person = person;
-      console.log(this.person);
-    },
-    error => this.errorMessage = <any>error
-  );
-  // this.person = this._welcomeService.getPerson(this.id);
-}
+      .subscribe(person => {
+        this.person = person;
+        console.log(this.person);
+      },
+      error => this.errorMessage = <any>error
+      );
+    // this.person = this._welcomeService.getPerson(this.id);
+  }
 
-onButtonClick() {
-  // this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
-  console.log("myVideo = " + this.myVideo);
-        if(this.myVideo['nativeElement'].paused){
-        this.myVideo['nativeElement'].play();
-      } else this.myVideo['nativeElement'].pause();
-    
+  onButtonClick() {
+    // this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
+    console.log("myVideo = " + this.myVideo);
+    if (this.myVideo['nativeElement'].paused) {
+      this.myVideo['nativeElement'].play();
+      this.playVideo = true;
+      this.buttonText="Pause";
+    } else {
+      this.myVideo['nativeElement'].pause();
+      this.playVideo = false;
+      this.buttonText="Play";
+    }
     //   if (this.playVideo==false){
     //   this.playVideo = true;
     //   }else this.playVideo=false;
     // }
-    this.playVideo = true;
+
   }
-  }
+}
