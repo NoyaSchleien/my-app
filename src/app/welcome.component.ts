@@ -20,7 +20,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.playVideo = false;
-    this.buttonText="Play";
+    this.buttonText = "Play";
     //I need to fix this make the button disabled when needed
     // if (this.person!=undefined){
     //   this.button=true;
@@ -41,11 +41,11 @@ export class WelcomeComponent implements OnInit {
     if (this.myVideo['nativeElement'].paused) {
       this.myVideo['nativeElement'].play();
       this.playVideo = true;
-      this.buttonText="Pause";
+      this.buttonText = "Pause";
     } else {
       this.myVideo['nativeElement'].pause();
       this.playVideo = false;
-      this.buttonText="Play";
+      this.buttonText = "Play";
     }
     //   if (this.playVideo==false){
     //   this.playVideo = true;
