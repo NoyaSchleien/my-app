@@ -33,12 +33,12 @@ export class WelcomeComponent implements OnInit {
       error => this.errorMessage = <any>error
       );
     // this.person = this._welcomeService.getPerson(this.id);
-    this.myVideo['nativeElement'].onpause = (ev: Event) => {
-     this.onButtonClick();
-    }
-    this.myVideo['nativeElement'].onplay = (ev: Event) => {
-      this.onButtonClick();
-        }
+    // this.myVideo['nativeElement'].onpause = (ev: Event) => {
+    // console.log(ev);
+    // }
+    // this.myVideo['nativeElement'].onplay = (ev: Event) => {
+    //   console.log(ev);
+    //     }
   }
 
   onButtonClick() {
