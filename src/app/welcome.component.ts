@@ -19,6 +19,7 @@ export class WelcomeComponent implements OnInit {
   context: CanvasRenderingContext2D;
   w: number;
   h: number;
+
   constructor(private _welcomeService: WelcomeService) { }
 
   ngOnInit(): void {
@@ -48,13 +49,12 @@ export class WelcomeComponent implements OnInit {
       this.h = this.w / ratio;
       this.myCanvas['nativeElement'].width = this.w;
       this.myCanvas['nativeElement'].height = this.h;
-      this.context['nativeElement']=this.myCanvas['nativeElement'].CanvasRenderingContext2D;
-  
+      
     }
     console.log("myVideo = " + this.myVideo);
     console.log("myCanvas = " + this.myCanvas);
-
   }
+  
   onButtonClick() {
     console.log("myVideo = " + this.myVideo);
     if (this.myVideo['nativeElement'].paused) {
@@ -67,9 +67,17 @@ export class WelcomeComponent implements OnInit {
       this.buttonText = "Play";
     }
   }
+  
   snap() {
-    console.log(this.myCanvas);
-    this.context['nativeElement'].fillRect(0, 0, this.w, this.h);
-    this.context['nativeElement'].drawImage(this.myVideo['nativeElement'], 0, 0, this.w, this.h)
+    this.context=this.myCanvas['nativeElement'].CanvasRenderingContext2D;
+    console.log(this.context);
+    this.context.fillRect(0, 0, this.w, this.h);
+    this.context.drawImage(this.myVideo['nativeElement'], 0, 0, this.w, this.h)
   }
+  
+  onRadioChange(options){
+    console.log(options.value);
+  this.myVideo['nativeElement'].playbackRate = options.value;
+  //why is it alwys 4???
+}
 }
