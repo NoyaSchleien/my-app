@@ -33,10 +33,15 @@ export class WelcomeComponent implements OnInit {
       error => this.errorMessage = <any>error
       );
     // this.person = this._welcomeService.getPerson(this.id);
+    this.myVideo['nativeElement'].onpause = (ev: Event) => {
+     this.onButtonClick();
+    }
+    this.myVideo['nativeElement'].onplay = (ev: Event) => {
+      this.onButtonClick();
+        }
   }
 
   onButtonClick() {
-    // this.myVideo=<HTMLVideoElement>document.getElementById("myVideo");
     console.log("myVideo = " + this.myVideo);
     if (this.myVideo['nativeElement'].paused) {
       this.myVideo['nativeElement'].play();
@@ -47,10 +52,6 @@ export class WelcomeComponent implements OnInit {
       this.playVideo = false;
       this.buttonText = "Play";
     }
-    //   if (this.playVideo==false){
-    //   this.playVideo = true;
-    //   }else this.playVideo=false;
-    // }
-
-  }
+      }
+      
 }

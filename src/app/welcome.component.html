@@ -17,7 +17,7 @@
 <button class="button" style="vertical-align:middle" (click)="onButtonClick()"><span>{{buttonText}}</span></button>
 </div>
 <div style="text-align:center">
-    <video #myVideo width="50%" height="50%" controls autoplay="true" (click)="onButtonClick()" loop poster="assets/logo.jpg" (onplay)="onButtonClick()" (onpause)="onButtonClick()">
+    <video #myVideo width="50%" height="50%" controls autoplay="true" (click)="onButtonClick()" loop poster="assets/logo.jpg">
         <source *ngIf="playVideo" [src]="person?.video" type="video/mp4">
           Your browser does not support the video tag.
       </video>
