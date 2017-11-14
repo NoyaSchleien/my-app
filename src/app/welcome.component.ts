@@ -12,6 +12,7 @@ export class WelcomeComponent implements OnInit {
   @Input() id: number;
   @ViewChild("myVideo") myVideo: HTMLVideoElement;
   @ViewChild("myCanvas") myCanvas: HTMLCanvasElement;
+  @ViewChild("options") radioOptions: HTMLElement;
   person: IPerson;
   errorMessage: string;
   playVideo: boolean;
@@ -76,6 +77,8 @@ export class WelcomeComponent implements OnInit {
   }
   
   onRadioChange(options){
+    console.log("radioOptions = "+this.radioOptions['nativeElement']);
+    console.log("radioOptions value= "+this.radioOptions['nativeElement'].value);
     console.log(options.value);
   this.myVideo['nativeElement'].playbackRate = options.value;
   //why is it alwys 4???

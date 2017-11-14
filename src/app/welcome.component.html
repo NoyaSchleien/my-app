@@ -26,23 +26,23 @@
     <form action="" #f="ngForm">
     <h2>Choose your speed</h2> 
     <label class="container">1/2
-      <input type="radio" #options name="options" ng-control="options" value="1/2" (change)="onRadioChange(options)">
+      <input type="radio" #options name="options" ng-control="options" [value]="1/2" (change)="onRadioChange(options)">
       <span class="checkmark"></span>
     </label>
     <label class="container">1
-      <input type="radio" #options checked="checked" name="options" ng-control="options" value="1" (change)="onRadioChange(options.value)">
+      <input type="radio" #options checked="checked" name="options" ng-control="options" [value]="1" (change)="onRadioChange(options)">
       <span class="checkmark"></span>
     </label>
     <label class="container">2
-      <input type="radio" #options name="options" ng-control="options" value="2" (change)="onRadioChange(options)">
+      <input type="radio" #options name="options" ng-control="options" [value]="2" (change)="onRadioChange(options)">
       <span class="checkmark"></span>
     </label>
     <label class="container">3
-      <input type="radio" #options name="options" ng-control="options" value="3" (change)="onRadioChange(options)">
+      <input type="radio" #options name="options" ng-control="options" [value]="3" (change)="onRadioChange(options)">
       <span class="checkmark"></span>
     </label>
     <label class="container">4
-      <input type="radio" #options name="options" ng-control="options" value="4" (change)="onRadioChange(options)">
+      <input type="radio" #options name="options" ng-control="options" [value]="4" (change)="onRadioChange(options)">
       <span class="checkmark"></span>
     </label>
   </form>
