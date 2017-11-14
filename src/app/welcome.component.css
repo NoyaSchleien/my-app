@@ -129,6 +129,44 @@ height: 8px;
 border-radius: 50%;
 background: white;
 }
-.speed{
-  margin: 80px;
+
+/*dropup speed menu*/
+.dropbtn{
+  background-color: #008CBA;
+  color: white;
+  padding: 12px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropup {
+  margin: 120px;
+  position: relative;
+  display: inline-block;
+}
+.dropup-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 70px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  bottom:100%;
+  z-index: 1;
+}
+.dropup-content p {
+  color: black;
+  padding: 6px 6px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropup:hover .dropup-content {
+  display: block;
+}
+.dropup-content p:hover{
+  background-color:lightgray;
+}
+.dropup:hover .dropbtn {
+  background-color: darkblue;
 }
