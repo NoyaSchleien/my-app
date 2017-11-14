@@ -76,11 +76,11 @@ export class WelcomeComponent implements OnInit {
     this.context.drawImage(this.myVideo['nativeElement'], 0, 0, this.w, this.h)
   }
   
-//   onRadioChange(options){
-//     console.log("radioOptions = "+this.radioOptions['nativeElement']);
-//     console.log("radioOptions value= "+this.radioOptions['nativeElement'].value);
-//     console.log(options.value);
-//   this.myVideo['nativeElement'].playbackRate = options.value;
-//   //why is it alwys 4???
-// }
+  onSpeedChange(value){
+    console.log(value);
+  }
+  onRadioChange(value){
+    console.log(value);
+  this.myVideo['nativeElement'].playbackRate = value;
+}
 }
