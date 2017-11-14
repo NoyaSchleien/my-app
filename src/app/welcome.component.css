@@ -130,6 +130,10 @@ border-radius: 50%;
 background: white;
 }
 
+.speed{
+  margin: 120px;
+  position: relative;
+}
 /*dropup speed menu*/
 .dropbtn{
   background-color: #008CBA;
@@ -165,6 +169,7 @@ background: white;
   display: block;
 }
 .dropup-content p:hover{
+  cursor: pointer;
   background-color:lightgray;
 }
 .dropup:hover .dropbtn {
