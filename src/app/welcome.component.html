@@ -5,36 +5,44 @@
 </div>
 <h2>Your Details: </h2>
 <ul>
-    <li>
+  <li>
     Phone : {{person?.phone}}
   </li>
   <li>
-      ADDRESS : {{person?.address}}
+    ADDRESS : {{person?.address}}
   </li>
 </ul>
 <h2>Check out your favorite video</h2>
-<div style="text-align:center">  
-<button class="button" style="vertical-align:middle" (click)="onButtonClick()"><span>{{buttonText}}</span></button>
+<div style="text-align:center">
+  <button class="button" style="vertical-align:middle" (click)="onButtonClick()">
+    <span>{{buttonText}}</span>
+  </button>
 </div>
 <div style="text-align:center">
-    <video #myVideo width="50%" height="50%" controls preload="auto" (click)="onButtonClick()" loop poster="assets/logo.jpg" class = "contain">
-        <source *ngIf="playVideo" [src]="person?.video" type="video/mp4">
-          Your browser does not support the video tag.
-      </video>
-  </div>
-  <div class = "time">
-    Play video from <input type = "number" #place (change)="onStartTimeChange(place.value)"> seconds
-  </div> 
-  <div class = "time">
-    Skip <input type = "number" #forward (change)="onforward(forward.value)"> seconds forward
-  </div> 
-  <div class = "time">
-    Skip <input type = "number" #backwards (change)="onbackwards(backwards.value)"> seconds backwards
-  </div> 
-  
-  <div class="speed">
-    <form action="" #f="ngForm">
-    <h2>Choose your speed</h2> 
+  <video #myVideo width="50%" height="50%" controls preload="auto" (click)="onButtonClick()" loop poster="assets/logo.jpg"
+    class="contain">
+    <source *ngIf="playVideo" [src]="person?.video" type="video/mp4"> Your browser does not support the video tag.
+  </video>
+</div>
+
+<div class="speed">
+  <form action="" #f="ngForm">
+    <div class="time">
+      Play video from
+      <input type="number" #place name="place" (change)="onStartTimeChange(place.value)"> seconds
+    </div>
+    <div class="time">
+      Skip
+      <input type="number" #forward name="forward" (change)="onForward(forward.value)"> seconds forward
+    </div>
+    <div class="time">
+      Skip
+      <input type="number" #backwards name="backwards" (change)="onBackwards(backwards.value)"> seconds backwards
+    </div>
+    <button id="btn" class="snapButton" #markButton name = "markButton" id="markButton" (click)="onMarkButton()">
+      Go to the 24-second mark
+    </button>
+    <h2>Choose your speed</h2>
     <label class="container">1/2
       <input type="radio" #options name="options" ng-control="options" [value]="1/2" (change)="onRadioChange($event.target.value)">
       <span class="checkmark"></span>
@@ -68,32 +76,33 @@
     <p (click)="onSpeedChange($event.target.value)" value="0.5">0.5</p>
   </div>
 </div> -->
-<div class="speed"><span>Speed</span>
-<select [ngModel]="selectedSpeed" (ngModelChange)="onChange($event)">
-  <option [ngValue]="0.5">0.5</option>
-  <option [ngValue]="0.6">0.6</option>
-  <option [ngValue]="0.7">0.7</option>
-  <option [ngValue]="0.8">0.8</option>
-  <option [ngValue]="0.9">0.9</option>
-  <option selected [ngValue]="1">1</option>
-  <option [ngValue]="2">2</option>
-  <option [ngValue]="3">3</option>
-  <option [ngValue]="4">4</option>
-  <option [ngValue]="5">5</option>
-  <option [ngValue]="6">6</option>
-  <option [ngValue]="7">7</option>
-  <option [ngValue]="8">8</option>
-  <option [ngValue]="9">9</option>
-  <option [ngValue]="10">10</option>
-  <option [ngValue]="15">15</option>
-  <option [ngValue]="20">20</option>
-  <option [ngValue]="25">25</option>
-  <option [ngValue]="30">30</option>
-  <option [ngValue]="35">35</option>
-  <option [ngValue]="40">40</option>
-</select>
+<div class="speed">
+  <span>Speed</span>
+  <select [ngModel]="selectedSpeed" (ngModelChange)="onChange($event)">
+    <option [ngValue]="0.5">0.5</option>
+    <option [ngValue]="0.6">0.6</option>
+    <option [ngValue]="0.7">0.7</option>
+    <option [ngValue]="0.8">0.8</option>
+    <option [ngValue]="0.9">0.9</option>
+    <option selected [ngValue]="1">1</option>
+    <option [ngValue]="2">2</option>
+    <option [ngValue]="3">3</option>
+    <option [ngValue]="4">4</option>
+    <option [ngValue]="5">5</option>
+    <option [ngValue]="6">6</option>
+    <option [ngValue]="7">7</option>
+    <option [ngValue]="8">8</option>
+    <option [ngValue]="9">9</option>
+    <option [ngValue]="10">10</option>
+    <option [ngValue]="15">15</option>
+    <option [ngValue]="20">20</option>
+    <option [ngValue]="25">25</option>
+    <option [ngValue]="30">30</option>
+    <option [ngValue]="35">35</option>
+    <option [ngValue]="40">40</option>
+  </select>
 </div>
-  <div class = "speed" style="text-align:center">
-    <button class="snapButton" (click)="snap()">Take Screenshot</button>
+<div class="speed" style="text-align:center">
+  <button class="snapButton" (click)="snap()">Take Screenshot</button>
   <canvas width="640" height="480" #myCanvas></canvas>
 </div>

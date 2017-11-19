@@ -20,12 +20,10 @@ export class WelcomeComponent implements OnInit {
   // w: number;
   // h: number;
   selectedSpeed:number;
-  startTime:number;
 
   constructor(private _welcomeService: WelcomeService) { }
 
   ngOnInit(): void {
-    this.startTime=0;
     this.playVideo = false;
     this.buttonText = "Play";
     //I need to fix this make the button disabled when needed
@@ -93,18 +91,32 @@ onClick(value:number){
   this.myVideo['nativeElement'].playbackRate = this.selectedSpeed;
 }
 onStartTimeChange(sec:number){
-  this.startTime=sec;
-  this.myVideo['nativeElement'].currentTime = this.startTime;
-  this.startTime= 0;
+  let startTime=sec;
+  this.myVideo['nativeElement'].currentTime = startTime;
 }
-onforward(sec:number){
-  this.startTime= this.myVideo['nativeElement'].currentTime;
-  this.myVideo['nativeElement'].currentTime = this.startTime+sec;
-  this.startTime= 0;
+onForward(sec:number){
+  var startTime= this.myVideo['nativeElement'].currentTime;
+  this.myVideo['nativeElement'].currentTime = startTime + sec;
 }
-onbackwards(sec:number){
-  this.startTime= this.myVideo['nativeElement'].currentTime;
-  this.myVideo['nativeElement'].currentTime = this.startTime - sec;
-  this.startTime= 0;
+onBackwards(sec:number){
+  var startTime= this.myVideo['nativeElement'].currentTime;
+  this.myVideo['nativeElement'].currentTime = startTime - sec;
 }
+onMarkButton(){
+ let ticks = 50; // number of frames during fast-forward
+    let  frms = 10; // number of milliseconds between frames in fast-forward/rewind
+      let endtime = 24.0; // time to fast-forward/remind to (in seconds)
+  // fast-forward/rewind video to end time 
+  var tdelta = (endtime - this.myVideo['nativeElement'].currentTime)/ticks; 
+  var startTime = this.myVideo['nativeElement'].currentTime;
+  for ( var i = 0; i < ticks; ++i )
+  {
+     (function(j){
+         setTimeout(function() {
+          this.myVideo['nativeElement'].currentTime = startTime+tdelta * j;
+         }, j * frms);
+     })(i);
+  }
+} 
+
 }
