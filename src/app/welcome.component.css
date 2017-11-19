@@ -175,3 +175,12 @@ background: white;
 .dropup:hover .dropbtn {
   background-color: darkblue;
 }
+
+.speed span{
+  color:#008CBA;
+}
+.time{
+  color:#008CBA;
+  margin: 120px;
+  
+}

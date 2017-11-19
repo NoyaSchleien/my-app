@@ -10,17 +10,18 @@ import { IPerson } from './person';
 
 @Injectable()
 export class WelcomeService {
+  private _url = 'http://localhost:58949/api/Test/get';
+  // private _url = 'assets/person.json';
   // private _url= 'http://jsonplaceholder.typicode.com/posts';
-  private _url = 'assets/person.json';
   private _person;
 
   constructor(private _http: HttpClient) { }
 
-  getPerson(id: number): Observable<IPerson> {
-    return this._http.get<IPerson>(this._url)
-      .do(data => this._person = data)
-      ._catch(this.handleError);
-  }
+  // getPerson(id: number): Observable<IPerson> {
+  //   return this._http.get<IPerson>(this._url)
+  //     .do(data => this._person = data)
+  //     ._catch(this.handleError);
+  // }
   // getPerson(id: number): IPerson {
   //   if (id == 1) {
   //     this._person = {
@@ -62,14 +63,12 @@ export class WelcomeService {
   //       return this._person;
   //     }
   //   }
-  //   getPerson(id: string): Observable<IPerson> {
-  //     console.log("im here");
-  //     // const url = `${this._url}/$(id)}`;
-  //     // return this._http.get<IPerson>(url)
-  //     return this._http.get<IPerson>(this._url)
-  //       .do(data => this._person = data)
-  //       .catch(this.handleError);
-  //   }
+    getPerson(id: number): Observable<IPerson> {
+      const url = `${this._url}/${id}`;
+      return this._http.get<IPerson>(url)
+        .do(data => this._person = data)
+        .catch(this.handleError);
+    }
   private handleError(err: HttpErrorResponse) {
     console.log(err.message);
     return Observable.throw(err.message);

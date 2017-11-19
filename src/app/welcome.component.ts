@@ -17,13 +17,15 @@ export class WelcomeComponent implements OnInit {
   errorMessage: string;
   playVideo: boolean;
   buttonText: string;
-  context: CanvasRenderingContext2D;
-  w: number;
-  h: number;
+  // w: number;
+  // h: number;
+  selectedSpeed:number;
+  startTime:number;
 
   constructor(private _welcomeService: WelcomeService) { }
 
   ngOnInit(): void {
+    this.startTime=0;
     this.playVideo = false;
     this.buttonText = "Play";
     //I need to fix this make the button disabled when needed
@@ -44,14 +46,14 @@ export class WelcomeComponent implements OnInit {
     // this.myVideo['nativeElement'].onplay = (ev: Event) => {
     //   console.log(ev);
     //     }
-    this.myVideo['nativeElement'].onloadmetadad = (ev: Event) => {
-      let ratio = this.myVideo['nativeElement'].videoWidth / this.myVideo['nativeElement'].videoHeight;
-      this.w = this.myVideo['nativeElement'].videoWidth - 100;
-      this.h = this.w / ratio;
-      this.myCanvas['nativeElement'].width = this.w;
-      this.myCanvas['nativeElement'].height = this.h;
-      
-    }
+    // this.myVideo['nativeElement'].onloadmetadad = (ev: Event) => {
+    //   let ratio = this.myVideo['nativeElement'].videoWidth / this.myVideo['nativeElement'].videoHeight;
+    //   this.w = this.myVideo['nativeElement'].videoWidth - 100;
+    //   this.h = this.w / ratio;
+    //   this.myCanvas['nativeElement'].width = this.w;
+    //   this.myCanvas['nativeElement'].height = this.h;
+    //   this.selectedSpeed=1;
+    // }
     console.log("myVideo = " + this.myVideo);
     console.log("myCanvas = " + this.myCanvas);
   }
@@ -70,17 +72,39 @@ export class WelcomeComponent implements OnInit {
   }
   
   snap() {
-    this.context=this.myCanvas['nativeElement'].CanvasRenderingContext2D;
-    console.log(this.context);
-    this.context.fillRect(0, 0, this.w, this.h);
-    this.context.drawImage(this.myVideo['nativeElement'], 0, 0, this.w, this.h)
+    var context=this.myCanvas['nativeElement'].getContext('2d');
+    context.fillRect(0, 0, this.myCanvas['nativeElement'].width, this.myCanvas['nativeElement'].height);
+    context.drawImage(this.myVideo['nativeElement'], 0, 0, this.myCanvas['nativeElement'].width, this.myCanvas['nativeElement'].height);
   }
   
   onSpeedChange(value){
     console.log(value);
   }
-  onRadioChange(value){
-    console.log(value);
-  this.myVideo['nativeElement'].playbackRate = value;
+  onRadioChange(value:number){
+    this.selectedSpeed=value;
+  this.myVideo['nativeElement'].playbackRate = this.selectedSpeed;
+}
+onChange(value:number){
+  this.selectedSpeed=value;
+  this.myVideo['nativeElement'].playbackRate = this.selectedSpeed;
+}
+onClick(value:number){
+  this.selectedSpeed=value;
+  this.myVideo['nativeElement'].playbackRate = this.selectedSpeed;
+}
+onStartTimeChange(sec:number){
+  this.startTime=sec;
+  this.myVideo['nativeElement'].currentTime = this.startTime;
+  this.startTime= 0;
+}
+onforward(sec:number){
+  this.startTime= this.myVideo['nativeElement'].currentTime;
+  this.myVideo['nativeElement'].currentTime = this.startTime+sec;
+  this.startTime= 0;
+}
+onbackwards(sec:number){
+  this.startTime= this.myVideo['nativeElement'].currentTime;
+  this.myVideo['nativeElement'].currentTime = this.startTime - sec;
+  this.startTime= 0;
 }
 }
