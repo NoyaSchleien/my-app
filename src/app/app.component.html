@@ -2,6 +2,7 @@
   <h1>
     Demo No. 1
   </h1>
+  <br>
   <form>
     ID : <br>
     <input type="number" #box (keyup)="onKey(box.value)">
@@ -10,3 +11,18 @@
 <div *ngIf="id && idValid">
   <app-welcome [id]='id'></app-welcome>
 </div> 
+<br><br>
+<!--
+<video #streamVideo width="50%" height="50%" controls>
+<source type="video/mp4"> Your browser does not support the video tag.
+</video>
+-->
+<div style="text-align:center">
+<h2>Watch Streaming</h2>
+
+<label class="switch">
+  <input type="checkbox" (change)="onChange($event)">
+  <span class="slider round"></span>
+</label>
+</div>
+<div *ngIf = "checked"><app-stream [checked] = 'checked'></app-stream></div>

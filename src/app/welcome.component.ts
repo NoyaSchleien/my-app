@@ -96,27 +96,29 @@ onStartTimeChange(sec:number){
 }
 onForward(sec:number){
   var startTime= this.myVideo['nativeElement'].currentTime;
-  this.myVideo['nativeElement'].currentTime = startTime + sec;
+  this.myVideo['nativeElement'].currentTime = startTime + (+sec);
 }
 onBackwards(sec:number){
   var startTime= this.myVideo['nativeElement'].currentTime;
   this.myVideo['nativeElement'].currentTime = startTime - sec;
 }
 onMarkButton(){
- let ticks = 50; // number of frames during fast-forward
-    let  frms = 10; // number of milliseconds between frames in fast-forward/rewind
-      let endtime = 24.0; // time to fast-forward/remind to (in seconds)
-  // fast-forward/rewind video to end time 
-  var tdelta = (endtime - this.myVideo['nativeElement'].currentTime)/ticks; 
-  var startTime = this.myVideo['nativeElement'].currentTime;
-  for ( var i = 0; i < ticks; ++i )
-  {
-     (function(j){
-         setTimeout(function() {
-          this.myVideo['nativeElement'].currentTime = startTime+tdelta * j;
-         }, j * frms);
-     })(i);
-  }
-} 
-
+  this.myVideo['nativeElement'].currentTime = 24;
+//   var me=this;
+//  let ticks = 50; // number of frames during fast-forward
+//     let  frms = 10; // number of milliseconds between frames in fast-forward/rewind
+//       let endtime = 24.0; // time to fast-forward/remind to (in seconds)
+//   // fast-forward/rewind video to end time 
+//   var tdelta = (endtime - this.myVideo['nativeElement'].currentTime)/ticks; 
+//   var startTime = this.myVideo['nativeElement'].currentTime;
+//   for ( var i = 0; i < ticks; ++i )
+//   {
+//      (function(j){
+//          setTimeout(function() {
+//           me.myVideo['nativeElement'].currentTime = startTime+tdelta * j;
+//          }, j * frms);
+//      })(i);
+//   }
+// } 
+}
 }

@@ -6,18 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome.component';
 import { WelcomeService } from './welcome.service';
+import { StreamComponent } from './stream.component';
+import { StreamService } from './stream.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    StreamComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [WelcomeService],
+  providers: [WelcomeService, StreamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

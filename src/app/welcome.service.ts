@@ -13,7 +13,7 @@ export class WelcomeService {
   private _url = 'http://localhost:58949/api/Test/get';
   // private _url = 'assets/person.json';
   // private _url= 'http://jsonplaceholder.typicode.com/posts';
-  private _person;
+  private _person:IPerson;
 
   constructor(private _http: HttpClient) { }
 
