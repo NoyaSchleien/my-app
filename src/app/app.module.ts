@@ -8,19 +8,22 @@ import { WelcomeComponent } from './welcome.component';
 import { WelcomeService } from './welcome.service';
 import { StreamComponent } from './stream.component';
 import { StreamService } from './stream.service';
+import { ChatComponent } from './chat.component';
+import { ChatService } from './chat.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    StreamComponent
+    StreamComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [WelcomeService, StreamService],
+  providers: [WelcomeService, StreamService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
