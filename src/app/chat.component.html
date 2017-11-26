@@ -1,8 +1,19 @@
     <div class="container">
-        <input type="text" id="message" />
-        <input type="button"  id="sendmessage" value="Send" />
-        <input type="hidden"  id="displayname" />
-        <ul #discussion id="discussion"></ul>
-    </div>
+      <div>
+        <label for="userName">Please type your name:</label>
+        <input type="text" [(ngModel)]="userName" id="userName">
+      </div>
+      <div>
+        <input #message type="text" id="message" />
+        <input type="button"  id="sendmessage" value="Send Message" (click)="broadcastMessage(message.value)" />
+      </div>
+<div>
+  <ul #discussion id="discussion">
+    <li *ngFor="let msg of msgs">
+      {{msg}}
+    </li>
+  </ul>
+</div>
+</div>
     
       

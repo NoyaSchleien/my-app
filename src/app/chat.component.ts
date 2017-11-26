@@ -1,41 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ChatService } from './chat.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent  {
+userName:string;
+public msgs:Array<string>;
+proxy:SignalR.Hub.Proxy;
 
-  constructor(private _chatService: ChatService) { }
+  constructor(private _ref: ChangeDetectorRef) { 
+var me=this;
+var connection=$.hubConnection("http://localhost:58949");
+me.proxy= connection.createHubProxy("videohub");
+this.msgs= new Array<string>();
 
-  ngOnInit() {
-    $(function () {
-      // Declare a proxy to reference the hub.
-      var chat = $.connection.chatHub;
-      // Create a function that the hub can call to broadcast messages.
-      chat.client.broadcastMessage = function (name, message) {
-          // Html encode display name and message.
-          var encodedName = $('<div />').text(name).html();
-          var encodedMsg = $('<div />').text(message).html();
-          // Add the message to the page.
-          $('#discussion').append('<li><strong>' + encodedName
-              + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-      };
-      // Get the user name and store it to prepend to messages.
-      $('#displayname').val(prompt('Enter your name:', ''));
-      // Set initial focus to message input box.
-      $('#message').focus();
-      // Start the connection.
-      $.connection.hub.start().done(function () {
-          $('#sendmessage').click(function () {
-              // Call the Send method on the hub.
-              chat.server.send($('#displayname').val(), $('#message').val());
-              // Clear text box and reset focus for next comment.
-              $('#message').val('').focus();
-          });
-      });
-  });
-         
-          }}
+me.proxy.on ("messageFromServer", (i) => {
+  this.msgs.push(i);
+  _ref.detectChanges();
+});
+
+connection.start()
+.done(function(){
+  console.log("Now connected, connection ID = " + connection.id);
+})
+.fail(function(){
+  console.log("Could not connect");
+});
+  }
+
+
+broadcastMessage(msg:string){
+this.proxy.invoke("HandleMsg", this.userName + " says " + msg);
+}
+}

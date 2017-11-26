@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -23,5 +23,19 @@ export class AppComponent {
     } else {
       this.checked = false;
     }
+  }
+  @ViewChild('video') video:any; 
+  // note that "#video" is the name of the template variable in the video element
+  
+  ngAfterViewInit() {
+    let _video=this.video.nativeElement;
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+                            .then(stream => {
+                              _video.src = window.URL.createObjectURL(stream);
+                              _video.play();
+                            })
+    }
+  
   }
 }

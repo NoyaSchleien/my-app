@@ -79,6 +79,7 @@
 <div class="speed">
   <span>Speed</span>
   <select [ngModel]="selectedSpeed" (ngModelChange)="onChange($event)">
+    <option [ngValue]="0.4">0.4</option>
     <option [ngValue]="0.5">0.5</option>
     <option [ngValue]="0.6">0.6</option>
     <option [ngValue]="0.7">0.7</option>
